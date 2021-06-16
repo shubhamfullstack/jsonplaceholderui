@@ -20,7 +20,7 @@ import { PostsComponent } from './modules/posts/posts.component';
     PostsComponent
   ],
   imports: [
-    BrowserModule,
+    BrowserModule.withServerTransition({ appId: 'serverApp' }),
     AppRoutingModule,
     HttpClientModule
   ],

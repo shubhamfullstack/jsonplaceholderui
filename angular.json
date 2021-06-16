@@ -20,7 +20,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/jsonplaceholderui",
+            "outputPath": "dist/jsonplaceholderui/browser",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -102,6 +102,64 @@
             ],
             "scripts": []
           }
+        },
+        "server": {
+          "builder": "@angular-devkit/build-angular:server",
+          "options": {
+            "outputPath": "dist/jsonplaceholderui/server",
+            "main": "server.ts",
+            "tsConfig": "tsconfig.server.json"
+          },
+          "configurations": {
+            "production": {
+              "outputHashing": "media",
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.prod.ts"
+                }
+              ]
+            },
+            "development": {
+              "optimization": false,
+              "sourceMap": true,
+              "extractLicenses": false
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "serve-ssr": {
+          "builder": "@nguniversal/builders:ssr-dev-server",
+          "configurations": {
+            "development": {
+              "browserTarget": "jsonplaceholderui:build:development",
+              "serverTarget": "jsonplaceholderui:server:development"
+            },
+            "production": {
+              "browserTarget": "jsonplaceholderui:build:production",
+              "serverTarget": "jsonplaceholderui:server:production"
+            }
+          },
+          "defaultConfiguration": "development"
+        },
+        "prerender": {
+          "builder": "@nguniversal/builders:prerender",
+          "options": {
+            "routes": [
+              "/"
+            ]
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "jsonplaceholderui:build:production",
+              "serverTarget": "jsonplaceholderui:server:production"
+            },
+            "development": {
+              "browserTarget": "jsonplaceholderui:build:development",
+              "serverTarget": "jsonplaceholderui:server:development"
+            }
+          },
+          "defaultConfiguration": "production"
         }
       }
     }
