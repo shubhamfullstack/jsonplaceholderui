@@ -1,0 +1,21 @@
+<div class="ui container">
+    <h1 class="ui header" style="margin:1rem;">Todos (UserId:{{ userId }})</h1>
+    <div class="ui divider"></div>
+    <table class="ui celled table">
+        <thead>
+          <tr><th>Id</th>
+          <th>Title</th>
+          <th>Status</th>
+        </tr></thead>
+        <tbody>
+          <tr *ngFor="let todo of todos">
+            <td data-label="Id">{{ todo.id }}</td>
+            <td data-label="Title">{{ todo.title }}</td>
+            <td data-label="Status" [ngClass]="{'positive': todo.completed, 'negative': !todo.completed}">
+                <i class="icon close" *ngIf="!todo.completed"></i> 
+                <i class="icon checkmark" *ngIf="todo.completed"></i>
+            </td>
+          </tr>
+        </tbody>
+    </table>
+</div>

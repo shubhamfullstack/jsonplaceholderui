@@ -1,0 +1,37 @@
+<div class="ui container">
+    <h1 class="ui header" style="margin:1rem;">Users</h1>
+    <div class="ui four stackable cards" *ngIf="users.length > 0" style="margin: 1rem;">
+        <div class="ui blue card" *ngFor="let user of users">
+            <div class="content">
+                <i class="right floated">{{ user.username }}</i>
+                <div class="header">{{user.name}}</div>
+                <div class="meta">{{ user.email }}</div>
+                <div class="description">
+                    {{ user.address.suite + ' '}} 
+                    {{ user.address.street + ' '}}
+                    {{ user.address.city + ' '}}
+                    {{ ', '+user.address.zipcode }}
+                </div>
+            </div>
+            <div class="extra content">
+                <span class="left floated image" 
+                (click)="navigateToAlbums(user.id)"
+                style="cursor: pointer;"
+                >
+                    <i class="image icon"></i>
+                  Albums
+                </span>
+                <span class="right floated star" 
+                (click)="navigateToFeeds(user.id)"
+                style="cursor: pointer;"
+                > Posts
+                </span>
+                <span class="right floated image" 
+                style="margin-right: 5px;cursor: pointer;"
+                (click)="navigateToTodos(user.id)"
+                > Todos
+                </span>
+              </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,19 @@
+<div class="ui container">
+    <h1 class="ui header" style="margin:1rem;">Albums (UserId:{{ userId }})</h1>
+    <div class="ui divider"></div>
+    <div class="ui middle aligned selection list" *ngIf="albums.length > 0" style="margin:1rem;">
+        <div class="item" *ngFor="let album of albums;let i=index" (click)="selectAlbum(i)">
+          <img class="ui avatar image" src="https://www.phoca.cz/images/projects/phoca-gallery-r.png">
+          <div class="content">
+            <div class="header">{{ album.title }}</div>
+          </div>
+          <div class="meta" *ngIf="selectedAlbum == i">
+              <div class="ui horizontal list">
+                  <div class="item" *ngFor="let image of images">
+                      <img height="100" width="100" [src]="image.thumbnailUrl" [alt]="image.title">
+                  </div>
+              </div>
+          </div>
+        </div>
+    </div>
+</div>

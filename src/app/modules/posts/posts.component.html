@@ -1,0 +1,41 @@
+<div class="ui container">
+    <h1 class="ui header" style="margin:1rem;">Posts (UserId:{{ userId }})</h1>
+    <div class="ui divider"></div>
+    <div class="ui large feed" *ngIf="feeds.length > 0" style="margin:1rem;">
+        <div class="event" *ngFor="let feed of feeds;let i=index">
+            <div class="label">
+                <img src="https://cdn0.iconfinder.com/data/icons/basic-ui-elements-round/700/08_rss-512.png">
+              </div>      
+            <div class="content">
+                <div class="date">
+                    3 days ago
+                  </div>
+                <div class="summary">{{ feed.title }}</div>
+                <div class="extra text">
+                    {{ feed.body }}
+                </div>
+                <div class="meta" (click)="selectPost(i)">
+                    <i class="comments icon"></i>
+                </div>
+                <div class="meta" *ngIf="selectedPost == i">
+                    <div class="ui comments">
+                        <div class="comment" *ngFor="let comment of comments">
+                          <a class="avatar">
+                            <img src="https://www.kindpng.com/picc/m/22-223941_transparent-avatar-png-male-avatar-icon-transparent-png.png">
+                          </a>
+                          <div class="content">
+                            <a class="author">{{ comment.name }}</a>
+                            <div class="metadata">
+                              <div class="date">{{ comment.email }}</div>
+                            </div>
+                            <div class="text">
+                              {{ comment.body }}
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
